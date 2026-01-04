@@ -1,6 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# ================
+# DEPENDENCIES
+# ================
 /node_modules
 /.pnp
 .pnp.*
@@ -10,32 +12,140 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
+# ================
+# TESTING
+# ================
 /coverage
 
-# next.js
+# ================
+# NEXT.JS
+# ================
 /.next/
 /out/
+/next-env.d.ts
+.next/types/**/*.ts
+.next/dev/types/**/*.ts
 
-# production
+# ================
+# BUILD OUTPUT
+# ================
 /build
+/dist
 
-# misc
-.DS_Store
-*.pem
+# ================
+# TYPESCRIPT
+# ================
+*.tsbuildinfo
 
-# debug
+# ================
+# ENVIRONMENT FILES
+# ================
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env
+# Uncomment the following line if you want to commit .env.example
+# !.env.example
+
+# ================
+# VERCEL
+# ================
+/.vercel
+
+# ================
+# LOG FILES
+# ================
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# ================
+# OS-RELATED FILES
+# ================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
 
-# vercel
-.vercel
+# ================
+# IDE AND EDITOR FILES
+# ================
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
 
-# typescript
+.idea/
+*.swp
+*.swo
+*~
+
+# Vim
+.vimrc
+.vim
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# VSCode
+.vscode/
+
+# IntelliJ
+*.iml
+*.iws
+*.ipr
+out/
+.idea/
+
+# ================
+# DEVELOPMENT TOOLING ARTIFACTS
+# ================
+*.log
+logs
+*.tmp
+tmp
+*.temp
+temp
+
+# Package lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ESLint
+.eslintcache
+
+# Prettier
+.prettiercache
+
+# TypeScript
 *.tsbuildinfo
-next-env.d.ts
+
+# ================
+# MISC
+# ================
+*.pem
+*.key
+*.crt
