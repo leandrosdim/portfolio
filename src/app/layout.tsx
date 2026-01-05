@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-colors duration-300`}
       >
-        <header className="border-b border-[light-dark(#9ca3af,transparent)] bg-white/60 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-10">
+        <header className="border-b border-gray-900 dark:border-slate-700 bg-white/60 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-10">
           <div className="container mx-auto px-4 py-4">
             <nav className="flex justify-between items-center">
               <Link href="/" className="text-xl font-bold text-gray-900 dark:text-slate-100">

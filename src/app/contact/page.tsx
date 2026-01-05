@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { profile } from "@/content/profile";
+import { submitContactForm } from "./actions/submitContactForm";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -22,27 +23,44 @@ export default function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError("");
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
-      });
+    try {
+      // Create FormData object
+      const formDataObj = new FormData();
+      formDataObj.append("name", formData.name);
+      formDataObj.append("email", formData.email);
+      formDataObj.append("subject", formData.subject);
+      formDataObj.append("message", formData.message);
+      // Honeypot field - should be empty
+      formDataObj.append("website", "");
 
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setSubmitSuccess(false);
-      }, 5000);
-    }, 1000);
+      const result = await submitContactForm(formDataObj);
+      
+      if (result.success) {
+        setSubmitSuccess(true);
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: ""
+        });
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setSubmitSuccess(false);
+        }, 5000);
+      } else {
+        setSubmitError(result.error || "Failed to send message");
+      }
+    } catch (error) {
+      setSubmitError("An unexpected error occurred");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -62,6 +80,17 @@ export default function ContactPage() {
           ) : null}
           
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Honeypot field - hidden from users but visible to bots */}
+            <div className="hidden">
+              <label htmlFor="website">Website</label>
+              <input
+                type="text"
+                id="website"
+                name="website"
+                className="hidden"
+              />
+            </div>
+            
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
               <input

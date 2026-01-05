@@ -45,8 +45,7 @@
 .env.test.local
 .env.production.local
 .env
-# Uncomment the following line if you want to commit .env.example
-# !.env.example
+AGENTS.md
 
 # ================
 # VERCEL
