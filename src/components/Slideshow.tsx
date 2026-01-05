@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 interface Slide {
@@ -17,6 +17,28 @@ interface SlideshowProps {
 export default function Slideshow({ projectId, slides }: SlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Check initial dark mode status
+    setIsDarkMode(document.documentElement.classList.contains('dark'));
+    
+    // Set up observer for class changes
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          setIsDarkMode(document.documentElement.classList.contains('dark'));
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -49,12 +71,12 @@ export default function Slideshow({ projectId, slides }: SlideshowProps) {
     <div className="w-full max-w-4xl mx-auto">
       {/* Slideshow container */}
       <div 
-        className="relative w-full rounded-xl overflow-hidden bg-gray-100 dark:bg-slate-800"
+        className={`relative w-full rounded-xl overflow-hidden ${isDarkMode ? 'bg-slate-800' : 'bg-gray-100' }`}
         onKeyDown={handleKeyDown}
         tabIndex={0}
       >
         {/* Slides */}
-        <div className="relative w-full pt-[100%] md:pt-[75%]"> {/* 1:1 on mobile, 4:3 on desktop */}
+        <div className="relative w-full pt-[100%] md:pt-[75%] "> {/* 1:1 on mobile, 4:3 on desktop */}
           {slides.map((slide, index) => (
             <div 
               key={slide.id}
@@ -109,9 +131,13 @@ export default function Slideshow({ projectId, slides }: SlideshowProps) {
 
       {/* Slide information */}
       {slides[currentSlide] && (
-        <div className="mt-6 p-6 bg-white dark:bg-slate-800 rounded-xl shadow-sm">
+        <div className={`mt-6 p-6 rounded-xl shadow-sm ${
+          isDarkMode ? 'bg-slate-800' : 'bg-white'
+        }`}>
           <h3 className="text-xl font-bold mb-2">{slides[currentSlide].title}</h3>
-          <p className="text-gray-600 dark:text-slate-300">{slides[currentSlide].description}</p>
+          <p className={`${
+            isDarkMode ? 'text-slate-300' : 'text-gray-600'
+          }`}>{slides[currentSlide].description}</p>
         </div>
       )}
 
@@ -126,8 +152,8 @@ export default function Slideshow({ projectId, slides }: SlideshowProps) {
             }}
             className={`w-3 h-3 rounded-full transition-all ${
               index === currentSlide 
-                ? "bg-blue-600 dark:bg-blue-400 w-6" 
-                : "bg-gray-300 dark:bg-slate-600"
+                ? (isDarkMode ? "bg-blue-400 w-6" : "bg-blue-600 w-6")
+                : (isDarkMode ? "bg-slate-600" : "bg-gray-300")
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

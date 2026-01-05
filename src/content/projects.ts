@@ -43,18 +43,63 @@ export const projects: IProject[] = [
     slides: [
       {
         id: "mywms1",
-        title: "Dashboard Overview",
-        description: "Main dashboard showing key metrics and quick access to core features"
+        title: "Login & Licensing",
+        description: "Secure sign-in with license-based access control, ensuring only authorized users/devices can use the app."
       },
       {
         id: "mywms2",
-        title: "Inventory Management",
-        description: "Real-time inventory tracking with scanning capabilities"
+        title: "Main Menu (Sales / Buys / Warehouse / Price Checker)",
+        description: "Clear module-based navigation that maps directly to real warehouse workflows and reduces training time."
       },
       {
         id: "mywms3",
-        title: "Order Processing",
-        description: "Streamlined workflow for processing warehouse orders"
+        title: "Admin Panel (PIN-Protected)",
+        description: "Restricted admin area (PIN unlock) for sensitive operations like database maintenance, settings management, and system controls."
+      },
+      {
+        id: "mywms4",
+        title: "Connection & Storage Mode Settings (ERP + SQLite)",
+        description: "Configurable connection to the ERP plus offline-first options, allowing operation under poor or unstable network conditions."
+      },
+      {
+        id: "mywms5",
+        title: "Orders List (Single-Order Flow)",
+        description: "High-performance order list with quick search and status visibility, optimized for large volumes of documents."
+      },
+      {
+        id: "mywms6",
+        title: "Multi-Order Selection (Batch Picking)",
+        description: "Batch picking mode to select multiple orders and process them efficiently, reducing walking time and improving throughput."
+      },
+      {
+        id: "mywms7",
+        title: "Filters / Date Range / Targeted Fetch",
+        description: "Advanced filtering to quickly locate specific orders (by date range or criteria) and minimize noise in high-traffic environments."
+      },
+      {
+        id: "mywms8",
+        title: "Sync Choice (Local vs ERP)",
+        description: "Flexible sync workflow: work locally (SQLite) and upload later, or work directly against the ERP for real-time operations."
+      },
+      {
+        id: "mywms9",
+        title: "Picking Screen (Scan-Driven Execution)",
+        description: "Barcode-first picking screen: scan to match the correct line, update quantities instantly, and prevent wrong-item errors."
+      },
+      {
+        id: "mywms10",
+        title: "Visual Status Indicators (Complete / Overpicked / Pending)",
+        description: "Color-coded line states that immediately communicate progress and exceptions (e.g., completed or over-picked) for faster decisions."
+      },
+      {
+        id: "mywms11",
+        title: "Line Actions / Quantity Edit Modal && Lot Handling (Expiry / Traceability)",
+        description: "Fast line-level controls for editing quantity, printing labels and handling exceptions safely, without disrupting the primary scan flow.Lot selection with expiry/traceability support to ensure compliance and accurate stock validation per lot and location."
+      },
+      {
+        id: "mywms12",
+        title: "Price Checker (Scan-to-Info & Label Printing)",
+        description: "Instant item lookup by barcode: retrieves live product details from the ERP and supports on-demand label printing at the point of use."
       }
     ]
   },
