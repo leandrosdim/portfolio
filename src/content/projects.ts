@@ -126,13 +126,28 @@ export const projects: IProject[] = [
     slides: [
       {
         id: "greentree1",
-        title: "Tree Mapping Interface",
-        description: "Interactive map showing tree locations with detailed information"
+        title: "City Trees Map Overview",
+        description: "Interactive city map displaying all recorded trees, color-coded by species and scaled marker size based on tree dimensions, with a side panel showing key details for the selected tree."
       },
       {
         id: "greentree2",
-        title: "Data Collection Form",
-        description: "Mobile-optimized form for field data collection"
+        title: "Tree Detail View",
+        description: "Comprehensive profile of a selected tree including location, biological data, condition, photographs, and QR code access for field identification."
+      },
+      {
+        id: "greentree3",
+        title: "Species Distribution Map",
+        description: "Geospatial visualization showing the spatial distribution of a specific tree species across the city."
+      },
+      {
+        id: "greentree4",
+        title: "Tree Species Statistics by Municipal District",
+        description: "Statistical breakdown of tree species counts per municipal district, presented in a comparative bar chart format."
+      },
+      {
+        id: "greentree5",
+        title: "Height, Diameter, and Canopy Statistics by Species",
+        description: "Analytical dashboard presenting aggregated statistics for tree height, trunk diameter, and canopy spread per species using charts and detailed tables."
       }
     ]
   },

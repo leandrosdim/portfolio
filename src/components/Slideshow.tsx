@@ -56,7 +56,7 @@ export default function Slideshow({ projectId, slides }: SlideshowProps) {
         tabIndex={0}
       >
         {/* Slides */}
-        <div className="relative w-full pt-[100%] md:pt-[65%] "> {/* Adjusted aspect ratio to better fit your images */}
+        <div className="relative w-full pt-[100%] md:pt-[70%] "> {/* Adjusted aspect ratio to better fit various image dimensions */}
           {slides.map((slide, index) => (
             <div 
               key={slide.id}
@@ -74,7 +74,7 @@ export default function Slideshow({ projectId, slides }: SlideshowProps) {
                 alt={slide.title}
                 fill
                 className="object-contain"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 95vw, 85vw"
                 onLoad={() => setIsLoading(false)}
                 priority={index === 0} // Priority for first image
                 quality={90} // Improved image quality
