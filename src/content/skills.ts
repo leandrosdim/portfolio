@@ -10,7 +10,7 @@ export const skills: ISkillCategory[] = [
   },
   {
     category: "Backend",
-    skills: ["Node.js", "Express", "PostgreSQL","MSSQL", "MongoDB", "REST APIs"],
+    skills: ["Node.js", "Express", "PostgreSQL","MSSQL", "REST APIs", "JWT Next Auth"],
   },
   {
     category: "Mobile",
