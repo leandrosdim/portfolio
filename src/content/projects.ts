@@ -211,7 +211,7 @@ export const projects: IProject[] = [
         id: "leader8",
         title: "Programme Editions Catalogue",
         description: "Version matrix that displays each programme’s editions across time with color-coded workflow status tracking."
-      },      
+      },
       {
         id: "leader9",
         title: "Version Comparison (Differences)",
@@ -223,7 +223,7 @@ export const projects: IProject[] = [
     id: "anastasiasapp",
     title: "AnastasiasApp",
     description: "PWA for personal trainer scheduling and management",
-    longDescription: "Progressive Web App for a personal trainer featuring schedule availability, customer bookings, statistics dashboard, customer cards, and financial overview.",
+    longDescription: "Role-based Progressive Web App for a personal trainer & clients - featuring schedule availability, customer bookings, statistics dashboard, customer cards, and financial overview.",
     technologies: ["Next.js", "TypeScript", "PWA", "PostgreSQL"],
     role: "Full-Stack Developer",
     challenges: [
@@ -238,7 +238,74 @@ export const projects: IProject[] = [
     status: "Live",
     type: "Web",
     featured: true,
-    projectOrder: 2
+    projectOrder: 2,
+    slides: [
+      {
+        id: "anastasia1",
+        title: "Authentication (Login / Signup)",
+        description: "Secure authentication system with role-based access using NextAuth and PostgreSQL."
+      },
+      {
+        id: "anastasia2a",
+        title: "🛠 Admin Role Sidebar Navigation",
+        description: "Role-based admin navigation exposing management, scheduling, booking, and reporting features."
+      }, {
+        id: "anastasia2b",
+        title: "👤 Customer Role Sidebar Navigation",
+        description: "Simplified customer navigation focused on bookings, personal programs, and progress tracking."
+      },
+
+      {
+        id: "anastasia3",
+        title: "Customer Home Dashboard",
+        description: "Personalized customer dashboard displaying upcoming sessions and available training options."
+      },
+      {
+        id: "anastasia4",
+        title: "Training Types – Details",
+        description: "Detailed presentation of training programs with benefits and direct booking actions."
+      },
+      {
+        id: "anastasia5",
+        title: "Booking Calendar Flow",
+        description: "Interactive booking flow allowing users to select date, training type, and time slot."
+      },
+      {
+        id: "anastasia6",
+        title: "Booking Confirmation",
+        description: "Real-time booking confirmation with immediate reservation feedback."
+      },
+      {
+        id: "anastasia7",
+        title: "Customer Statistics",
+        description: "Customer statistics dashboard showing training history and personal fitness metrics."
+      },
+      {
+        id: "anastasia8",
+        title: "Admin Dashboard & Analytics",
+        description: "Administrative dashboard with advanced filters and monthly analytics for sessions and payments."
+      },     
+      {
+        id: "anastasia9",
+        title: "Customer Management (Admin)",
+        description: "Comprehensive customer management with instant filtering and profile access."
+      },
+      {
+        id: "anastasia10",
+        title: "Customer Personal Card (Admin View)",
+        description: "Centralized customer profile displaying full history of trainings, payments, and actions."
+      },
+      {
+        id: "anastasia11",
+        title: "Schedule Management (Admin)",
+        description: "Admin-controlled scheduling system defining availability for customer bookings."
+      },
+      {
+        id: "anastasia12",
+        title: "Manual Booking & Session Completion",
+        description: "Manual booking and session status management for real-world operational flexibility."
+      },
+    ],
   },
   {
     id: "multi-agent",

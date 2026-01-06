@@ -56,7 +56,7 @@ export default function Slideshow({ projectId, slides }: SlideshowProps) {
         tabIndex={0}
       >
         {/* Slides */}
-        <div className="relative w-full pt-[100%] md:pt-[70%] "> {/* Adjusted aspect ratio to better fit various image dimensions */}
+        <div className="relative w-full pt-[100%] md:pt-[46%] "> {/* Further adjusted aspect ratio to better fit very wide images like anastasia2a */}
           {slides.map((slide, index) => (
             <div 
               key={slide.id}
