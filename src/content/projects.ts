@@ -159,18 +159,48 @@ export const projects: IProject[] = [
     slides: [
       {
         id: "leader1",
-        title: "Application Dashboard",
-        description: "Overview of submitted applications with status tracking"
+        title: "Home / Main Screen",
+        description: "Central dashboard with persistent navigation and quick access to all LEADER modules and content."
       },
       {
         id: "leader2",
-        title: "Review Interface",
-        description: "Detailed view for reviewers to evaluate applications"
+        title: "Programme Areas Catalogue",
+        description: "Expandable regional directory listing all LEADER programme areas and their implementing bodies with key identifiers"
       },
       {
         id: "leader3",
-        title: "Reporting Module",
-        description: "Comprehensive reporting tools for program administrators"
+        title: "Areas Map",
+        description: "Interactive map visualizing LEADER coverage areas to explore programmes geographically with zoom and selection controls."
+      },
+      {
+        id: "leader4",
+        title: "Active Calls Catalogue",
+        description: "Consolidated list of currently active LEADER calls, grouped by region, highlighting titles, agencies, and deadlines."
+      },
+      {
+        id: "leader5",
+        title: "Local Programme – Folder B",
+        description: "Structured “Folder B” workspace with collapsible sections for strategy, interventions, financing, and annual planning."
+      },
+      {
+        id: "leader6",
+        title: "Folder B – Result Indicators",
+        description: "Modal form for entering and reviewing yearly result indicator values per intervention in a focused, validated layout."
+      },
+      {
+        id: "leader7",
+        title: "Latest Approved Programmes",
+        description: "Table view of all local programmes showing the latest approved edition, status, dates, and key metadata."
+      },
+      {
+        id: "leader8",
+        title: "Programme Editions Catalogue",
+        description: "Version matrix that displays each programme’s editions across time with color-coded workflow status tracking."
+      },      
+      {
+        id: "leader9",
+        title: "Version Comparison (Differences)",
+        description: "Comparison subsystem that surfaces changes between current and previous programme editions with grouped, side-by-side values."
       }
     ]
   },
