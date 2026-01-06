@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: "Get in touch with me for collaboration opportunities",
     type: "website",
     locale: "en_US",
-    url: "https://yourportfolio.com/contact",
+    url: "https://leandrosdim.com/contact",
   },
   twitter: {
     card: "summary_large_image",

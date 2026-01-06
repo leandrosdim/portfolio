@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://yourportfolio.com/</loc>
+    <loc>https://leandrosdim.com/</loc>
     <lastmod>2023-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://yourportfolio.com/projects</loc>
+    <loc>https://leandrosdim.com/projects</loc>
     <lastmod>2023-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourportfolio.com/contact</loc>
+    <loc>https://leandrosdim.com/contact</loc>
     <lastmod>2023-01-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <!-- Add individual project pages -->
   <url>
-    <loc>https://yourportfolio.com/projects/mywms</loc>
+    <loc>https://leandrosdim.com/projects/mywms</loc>
     <lastmod>2023-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yourportfolio.com/projects/greentree</loc>
+    <loc>https://leandrosdim.com/projects/greentree</loc>
     <lastmod>2023-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yourportfolio.com/projects/leader</loc>
+    <loc>https://leandrosdim.com/projects/leader</loc>
     <lastmod>2023-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yourportfolio.com/projects/anastasiasapp</loc>
+    <loc>https://leandrosdim.com/projects/anastasiasapp</loc>
     <lastmod>2023-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yourportfolio.com/projects/multi-agent</loc>
+    <loc>https://leandrosdim.com/projects/multi-agent</loc>
     <lastmod>2023-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yourportfolio.com/projects/law-agent</loc>
+    <loc>https://leandrosdim.com/projects/law-agent</loc>
     <lastmod>2023-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://yourportfolio.com/projects/crm</loc>
+    <loc>https://leandrosdim.com/projects/crm</loc>
     <lastmod>2023-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

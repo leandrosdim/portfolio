@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: project.description,
       type: "website",
       locale: "en_US",
-      url: `https://yourportfolio.com/projects/${project.id}`,
+      url: `https://leandrosdim.com/projects/${project.id}`,
     },
     twitter: {
       card: "summary_large_image",

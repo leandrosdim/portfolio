@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: profile.bio,
     type: "website",
     locale: "en_US",
-    url: "https://yourportfolio.com",
+    url: "https://leandrosdim.com",
   },
   twitter: {
     card: "summary_large_image",

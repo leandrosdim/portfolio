@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: "Explore my portfolio of web and mobile development projects",
     type: "website",
     locale: "en_US",
-    url: "https://yourportfolio.com/projects",
+    url: "https://leandrosdim.com/projects",
   },
   twitter: {
     card: "summary_large_image",
