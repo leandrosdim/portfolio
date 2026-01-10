@@ -387,7 +387,14 @@ export const projects: IProject[] = [
     status: "Building",
     type: "Building",
     featured: false,
-    projectOrder: 7
+    projectOrder: 7,
+    slides: [
+      {
+        id: "under_construction",
+        title: "Under Construction (Coming Soon)",
+        description: "This feature is currently in development, and a polished version will be available in a future update."
+      },
+    ]
   },
   {
     id: "crm",
@@ -407,7 +414,14 @@ export const projects: IProject[] = [
     status: "Building",
     type: "Building",
     featured: false,
-    projectOrder: 8
+    projectOrder: 8,
+    slides: [
+      {
+        id: "under_construction",
+        title: "Under Construction (Coming Soon)",
+        description: "This feature is currently in development, and a polished version will be available in a future update."
+      },
+    ]
   },
   {
     id: "price-checker",
