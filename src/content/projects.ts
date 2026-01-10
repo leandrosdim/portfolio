@@ -284,7 +284,7 @@ export const projects: IProject[] = [
         id: "anastasia8",
         title: "Admin Dashboard & Analytics",
         description: "Administrative dashboard with advanced filters and monthly analytics for sessions and payments."
-      },     
+      },
       {
         id: "anastasia9",
         title: "Customer Management (Admin)",
@@ -325,7 +325,49 @@ export const projects: IProject[] = [
     status: "Not Live",
     type: "Web",
     featured: false,
-    projectOrder: 5
+    projectOrder: 6,
+    slides: [
+      {
+        id: "Main menu",
+        title: "App Dashboard (Feature Overview)",
+        description: "A modern, centralized menu that presents all app modules with a clean, production-style UI."
+      },
+      {
+        id: "voice agent",
+        title: "Voice Agent (Mic-Enabled AI)",
+        description: "A voice-enabled agent interface where users speak via microphone and control behavior through custom system instructions"
+      },
+      {
+        id: "project_manager",
+        title: "AI Project Manager (Scope & Time Estimation)",
+        description: "An AI assistant that analyzes a project brief, breaks it into actionable tasks, and estimates time per phase."
+      },
+      {
+        id: "image_studio_ai",
+        title: "AI Image Studio (Prompt-to-Image)",
+        description: "A prompt-to-image workspace that generates visuals from user prompts using an AI image model."
+      },
+      {
+        id: "web search agent",
+        title: "Web Search Agent (Live Research Chat)",
+        description: "A chat agent that performs web searches and responds with synthesized answers based on online sources."
+      },
+      {
+        id: "pdf_analyzer",
+        title: "PDF Analyzer (Document Q&A)",
+        description: "A PDF chat tool that accepts file uploads and enables summarization and question answering over document content"
+      },
+      {
+        id: "chat_with_answer_3rows",
+        title: "Concise Chat Mode (3-Line Answers)",
+        description: "A chat experience optimized for speed and clarity, limiting responses to a maximum of three lines."
+      },
+      {
+        id: "Pricing Plan",
+        title: "Pricing Page (Demo UI)",
+        description: "A playful pricing-plan page included to complete the product feel and demonstrate real-world app structure."
+      },
+    ]
   },
   {
     id: "law-agent",
@@ -345,7 +387,7 @@ export const projects: IProject[] = [
     status: "Building",
     type: "Building",
     featured: false,
-    projectOrder: 6
+    projectOrder: 7
   },
   {
     id: "crm",
@@ -365,6 +407,43 @@ export const projects: IProject[] = [
     status: "Building",
     type: "Building",
     featured: false,
-    projectOrder: 7
+    projectOrder: 8
+  },
+  {
+    id: "price-checker",
+    title: "Price Checker",
+    description: "Android app for retail price verification with licensing system",
+    longDescription: "Android app that allows customers to scan items in-store to check prices and discounts. Features a licensing system and dashboard for retailers to manage budgets and device access. Designed for Zebra handheld devices used in retail environments.",
+    technologies: ["React Native", "Android", "Zebra Devices", "Licensing System"],
+    role: "Lead Developer",
+    challenges: [
+      "Optimizing for Zebra handheld devices",
+      "Implementing secure licensing system"
+    ],
+    solutions: [
+      "Built device-specific optimizations for Zebra hardware",
+      "Developed robust licensing and budget management system"
+    ],
+    status: "Live",
+    type: "Mobile",
+    featured: true,
+    projectOrder: 5,
+    slides: [
+      {
+        id: "pricechecker1",
+        title: "Scan Input with Logo Management",
+        description: "Retailers can set logo and let their customers scan to find the price of the items."
+      },
+      {
+        id: "pricechecker2",
+        title: "Item Scan Interface",
+        description: "Simple scanning interface that allows customers to quickly check prices and view product information."
+      },
+      {
+        id: "pricechecker3",
+        title: "Price & Discount Display",
+        description: "Clear display of current prices, discounts, and promotional information for scanned items."
+      }
+    ]
   }
 ];
