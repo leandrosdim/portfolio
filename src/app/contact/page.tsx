@@ -28,6 +28,57 @@ export default function ContactPage() {
     setIsSubmitting(true);
     setSubmitError("");
 
+    // Client-side validation before sending to server
+    if (!formData.name.trim()) {
+      setSubmitError("Name is required");
+      setIsSubmitting(false);
+      return;
+    }
+    
+    if (formData.name.trim().length > 100) {
+      setSubmitError("Name is too long (max 100 characters)");
+      setIsSubmitting(false);
+      return;
+    }
+    
+    // Basic email validation on client side
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim() || !emailRegex.test(formData.email)) {
+      setSubmitError("Valid email is required");
+      setIsSubmitting(false);
+      return;
+    }
+    
+    if (!formData.subject.trim()) {
+      setSubmitError("Subject is required");
+      setIsSubmitting(false);
+      return;
+    }
+    
+    if (formData.subject.trim().length > 200) {
+      setSubmitError("Subject is too long (max 200 characters)");
+      setIsSubmitting(false);
+      return;
+    }
+    
+    if (/\n|\r/.test(formData.subject)) {
+      setSubmitError("Subject cannot contain line breaks");
+      setIsSubmitting(false);
+      return;
+    }
+    
+    if (!formData.message.trim()) {
+      setSubmitError("Message is required");
+      setIsSubmitting(false);
+      return;
+    }
+    
+    if (formData.message.trim().length > 2000) {
+      setSubmitError("Message is too long (max 2000 characters)");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       // Create FormData object
       const formDataObj = new FormData();
@@ -58,6 +109,8 @@ export default function ContactPage() {
       }
     } catch (error) {
       setSubmitError("An unexpected error occurred");
+      // We catch the error above but still need to reference it to satisfy eslint
+      console.error("Submission error:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -74,9 +127,9 @@ export default function ContactPage() {
           <h2 className="text-2xl font-semibold mb-6">Send me a message</h2>
           
           {submitSuccess ? (
-            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
-              <p>Thank you for your message! I'll get back to you soon.</p>
-            </div>
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+                <p>Thank you for your message! I&apos;ll get back to you soon.</p>
+              </div>
           ) : null}
           
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -129,7 +182,7 @@ export default function ContactPage() {
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="What's this regarding?"
+                placeholder="What&apos;s this regarding?"
               />
             </div>
             

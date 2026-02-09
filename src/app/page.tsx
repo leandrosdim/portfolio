@@ -168,7 +168,7 @@ export default function Home() {
       <section className="mb-16 text-center">
         <h2 className="text-3xl font-bold mb-4">Interested in working together?</h2>
         <p className="text-lg text-gray-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
-          I'm always open to discussing new opportunities, interesting projects, and creative ideas.
+          I&apos;m always open to discussing new opportunities, interesting projects, and creative ideas.
         </p>
         <Link 
           href="/contact" 

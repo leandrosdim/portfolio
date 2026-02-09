@@ -51,6 +51,18 @@ To enable the contact form functionality, you need to set up Supabase and Resend
    - `message` (text)
    - `created_at` (timestamp, default: now())
 
+## Security Enhancements
+
+This portfolio includes several security enhancements for the contact form:
+
+- Rate limiting to prevent spam (5 requests per hour per IP)
+- Input validation and sanitization to prevent XSS attacks
+- Honeypot field for bot detection
+- Environment variable validation
+- Security headers including Content Security Policy
+
+See `SECURITY.md` for more details on security features and recommendations for production deployment.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
