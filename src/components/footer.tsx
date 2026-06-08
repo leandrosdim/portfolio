@@ -13,7 +13,7 @@ export default function Footer() {
               href="/"
               className="text-xl font-bold text-brand-text-primary tracking-tight"
             >
-              leandros<span className="text-brand-accent">dim</span>
+              Leandros<span className="text-[var(--color-accent)]">Dim</span>
             </Link>
             <p className="mt-4 text-brand-text-secondary text-sm leading-relaxed max-w-md">
               {SITE_CONFIG.description}

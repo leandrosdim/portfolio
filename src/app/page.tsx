@@ -63,7 +63,7 @@ export default function Home() {
       <Section className="relative overflow-hidden" noTopPadding>
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <Container>
-          <div className="grid lg:grid-cols-2 gap-6 items-center min-h-[calc(100vh-72px-120px)]">
+          <div className="grid lg:grid-cols-2 gap-6 items-center min-h-[calc(100vh-52px-120px)]">
             <div>
               <ScrollReveal>
                 <Image
