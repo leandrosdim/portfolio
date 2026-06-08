@@ -1,23 +1,79 @@
 export interface ISkillCategory {
   category: string;
+  description: string;
   skills: string[];
 }
 
 export const skills: ISkillCategory[] = [
   {
-    category: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS"],
+    category: "Web Development",
+    description: "Full-stack web applications and SaaS platforms",
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "HTML/CSS",
+      "Tailwind CSS",
+      "Node.js",
+      "Express",
+    ],
   },
   {
-    category: "Backend",
-    skills: ["Node.js", "Express", "PostgreSQL","MSSQL", "REST APIs", "JWT Next Auth"],
+    category: "Mobile Development",
+    description: "Cross-platform and native mobile applications",
+    skills: [
+      "React Native",
+      "Expo",
+      "Android Development",
+      "iOS Development",
+      "PWA",
+    ],
   },
   {
-    category: "Mobile",
-    skills: ["React Native","Expo GO", "Android Development", "IOS Development"],
+    category: "AI Solutions",
+    description: "Intelligent systems and automation",
+    skills: [
+      "OpenAI API",
+      "Vector Databases",
+      "Embeddings",
+      "Similarity Search",
+      "Document Processing",
+    ],
   },
   {
-    category: "DevOps & Tools",
-    skills: ["Git", "Docker", "Linux", "Nginx", "CI/CD"],
+    category: "Database & Infrastructure",
+    description: "Scalable and secure data systems",
+    skills: [
+      "PostgreSQL",
+      "MSSQL",
+      "Redis",
+      "Supabase",
+      "REST APIs",
+      "Data Modeling",
+    ],
+  },
+  {
+    category: "DevOps & Security",
+    description: "Production infrastructure and deployment",
+    skills: [
+      "Linux",
+      "Nginx",
+      "Docker",
+      "CI/CD",
+      "SSL/TLS",
+      "Security Hardening",
+    ],
+  },
+  {
+    category: "Enterprise Integration",
+    description: "Connecting systems and automating workflows",
+    skills: [
+      "ERP Integration",
+      "API Development",
+      "System Architecture",
+      "Performance Tuning",
+      "Automation",
+    ],
   },
 ];

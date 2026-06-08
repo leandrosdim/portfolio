@@ -1,22 +1,36 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { inter, jetbrainsMono } from "@/lib/fonts";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import "./globals.css";
-import Link from "next/link";
-import ThemeToggle from "@/components/ThemeToggle";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
-  title: "Portfolio | Full-Stack Developer",
-  description: "Personal portfolio of a Full-Stack Developer",
+  title: {
+    default: "Leandros Dimitriadis | Software Engineer & Business Technology Consultant",
+    template: "%s | Leandros Dimitriadis",
+  },
+  description:
+    "Building web applications, mobile apps, AI solutions & enterprise integrations. 7+ years delivering production-ready systems for modern businesses.",
+  metadataBase: new URL("https://leandrosdim.com"),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://leandrosdim.com",
+    siteName: "Leandros Dimitriadis",
+    title: "Leandros Dimitriadis | Software Engineer & Business Technology Consultant",
+    description:
+      "Building web applications, mobile apps, AI solutions & enterprise integrations. 7+ years delivering production-ready systems for modern businesses.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Leandros Dimitriadis | Software Engineer & Business Technology Consultant",
+    description:
+      "Building web applications, mobile apps, AI solutions & enterprise integrations.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -24,38 +38,48 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Leandros Dimitriadis",
+    url: "https://leandrosdim.com",
+    jobTitle: "Software Engineer & Business Technology Consultant",
+    description:
+      "Building web applications, mobile apps, AI solutions & enterprise integrations.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Thessaloniki",
+      addressCountry: "GR",
+    },
+    sameAs: [
+      "https://github.com/leandrosdim",
+      "https://linkedin.com/in/leandros-dimitriadis-648765179",
+    ],
+    knowsAbout: [
+      "Web Development",
+      "Mobile Development",
+      "AI Solutions",
+      "Enterprise Integration",
+      "Solution Architecture",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+    ],
+  };
+
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-colors duration-300`}
-      >
-        <header className="border-b border-gray-900 dark:border-slate-700 bg-white/60 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-10">
-          <div className="container mx-auto px-4 py-4">
-            <nav className="flex justify-between items-center">
-              <Link href="/" className="text-xl font-bold text-gray-900 dark:text-slate-100">
-                Portfolio
-              </Link>
-              <div className="flex items-center space-x-6">
-                <Link href="/" className="text-gray-700 hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-300 transition-colors">
-                  Home
-                </Link>
-                <Link href="/projects" className="text-gray-700 hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-300 transition-colors">
-                  Projects
-                </Link>
-                <Link href="/contact" className="text-gray-700 hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-300 transition-colors">
-                  Contact
-                </Link>
-                <ThemeToggle />
-              </div>
-            </nav>
-          </div>
-        </header>
-        <main>{children}</main>
-        <footer className="border-t border-gray-200 dark:border-slate-700 mt-12 py-6">
-          <div className="container mx-auto px-4 text-center text-gray-600 dark:text-slate-400">
-            <p>© {new Date().getFullYear()} Leandros Dimitriadis Portfolio. All rights reserved.</p>
-          </div>
-        </footer>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="min-h-screen bg-brand-bg text-brand-text-primary antialiased">
+        <Navbar />
+        <main className="pt-[72px]">{children}</main>
+        <Footer />
       </body>
     </html>
   );

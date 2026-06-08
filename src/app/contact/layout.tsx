@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact | Full-Stack Developer",
-  description: "Get in touch with me for collaboration opportunities",
+  title: "Contact",
+  description:
+    "Get in touch to discuss your project. I build production-ready web applications, mobile apps, AI solutions, and enterprise integrations.",
   openGraph: {
-    title: "Contact | Full-Stack Developer",
-    description: "Get in touch with me for collaboration opportunities",
-    type: "website",
-    locale: "en_US",
+    title: "Contact | Leandros Dimitriadis",
+    description:
+      "Get in touch to discuss your project. Custom software solutions for modern businesses.",
     url: "https://leandrosdim.com/contact",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact | Full-Stack Developer",
-    description: "Get in touch with me for collaboration opportunities",
   },
 };
 
@@ -22,5 +17,5 @@ export default function ContactLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <>{children}</>;
 }
