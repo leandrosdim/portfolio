@@ -19,6 +19,7 @@ export interface IProject {
     id: string;
     title: string;
     description: string;
+    frame?: "phone" | "desktop";
   }[];
 }
 
@@ -133,72 +134,84 @@ export const projects: IProject[] = [
         title: "Login & Licensing",
         description:
           "Secure sign-in with license-based access control, ensuring only authorized users/devices can use the app.",
+        frame: "phone",
       },
       {
         id: "mywms2",
         title: "Main Menu (Sales / Buys / Warehouse / Price Checker)",
         description:
           "Clear module-based navigation that maps directly to real warehouse workflows and reduces training time.",
+        frame: "phone",
       },
       {
         id: "mywms3",
         title: "Admin Panel (PIN-Protected)",
         description:
           "Restricted admin area (PIN unlock) for sensitive operations like database maintenance, settings management, and system controls.",
+        frame: "phone",
       },
       {
         id: "mywms4",
         title: "Connection & Storage Mode Settings (ERP + SQLite)",
         description:
           "Configurable connection to the ERP plus offline-first options, allowing operation under poor or unstable network conditions.",
+        frame: "phone",
       },
       {
         id: "mywms5",
         title: "Orders List (Single-Order Flow)",
         description:
           "High-performance order list with quick search and status visibility, optimized for large volumes of documents.",
+        frame: "phone",
       },
       {
         id: "mywms6",
         title: "Multi-Order Selection (Batch Picking)",
         description:
           "Batch picking mode to select multiple orders and process them efficiently, reducing walking time and improving throughput.",
+        frame: "phone",
       },
       {
         id: "mywms7",
         title: "Filters / Date Range / Targeted Fetch",
         description:
           "Advanced filtering to quickly locate specific orders (by date range or criteria) and minimize noise in high-traffic environments.",
+        frame: "phone",
       },
       {
         id: "mywms8",
         title: "Sync Choice (Local vs ERP)",
         description:
           "Flexible sync workflow: work locally (SQLite) and upload later, or work directly against the ERP for real-time operations.",
+        frame: "phone",
       },
       {
         id: "mywms9",
         title: "Picking Screen (Scan-Driven Execution)",
         description:
           "Barcode-first picking screen: scan to match the correct line, update quantities instantly, and prevent wrong-item errors.",
+        frame: "phone",
       },
       {
         id: "mywms10",
         title: "Visual Status Indicators (Complete / Overpicked / Pending)",
         description:
           "Color-coded line states that immediately communicate progress and exceptions (e.g., completed or over-picked) for faster decisions.",
+        frame: "phone",
       },
       {
         id: "mywms11",
         title: "Line Actions / Quantity Edit Modal & Lot Handling (Expiry / Traceability)",
         description:
           "Fast line-level controls for editing quantity, printing labels and handling exceptions safely, without disrupting the primary scan flow. Lot selection with expiry/traceability support.",
+        frame: "phone",
       },
       {
         id: "mywms12",
         title: "Price Checker (Scan-to-Info & Label Printing)",
         description:
           "Instant item lookup by barcode: retrieves live product details from the ERP and supports on-demand label printing at the point of use.",
+        frame: "phone",
       },
     ],
   },
@@ -232,78 +245,91 @@ export const projects: IProject[] = [
         title: "Authentication (Login / Signup)",
         description:
           "Secure authentication system with role-based access using NextAuth and PostgreSQL.",
+        frame: "phone",
       },
       {
         id: "anastasia2a",
         title: "Admin Role Sidebar Navigation",
         description:
           "Role-based admin navigation exposing management, scheduling, booking, and reporting features.",
+        frame: "desktop",
       },
       {
         id: "anastasia2b",
         title: "Customer Role Sidebar Navigation",
         description:
           "Simplified customer navigation focused on bookings, personal programs, and progress tracking.",
+        frame: "phone",
       },
       {
         id: "anastasia3",
         title: "Customer Home Dashboard",
         description:
           "Personalized customer dashboard displaying upcoming sessions and available training options.",
+        frame: "phone",
       },
       {
         id: "anastasia4",
         title: "Training Types – Details",
         description:
           "Detailed presentation of training programs with benefits and direct booking actions.",
+        frame: "phone",
       },
       {
         id: "anastasia5",
         title: "Booking Calendar Flow",
         description:
           "Interactive booking flow allowing users to select date, training type, and time slot.",
+        frame: "phone",
       },
       {
         id: "anastasia6",
         title: "Booking Confirmation",
         description:
           "Real-time booking confirmation with immediate reservation feedback.",
+        frame: "phone",
       },
       {
         id: "anastasia7",
         title: "Customer Statistics",
         description:
           "Customer statistics dashboard showing training history and personal fitness metrics.",
+        frame: "phone",
       },
       {
         id: "anastasia8",
         title: "Admin Dashboard & Analytics",
         description:
           "Administrative dashboard with advanced filters and monthly analytics for sessions and payments.",
+        frame: "desktop",
       },
       {
         id: "anastasia9",
         title: "Customer Management (Admin)",
         description:
           "Comprehensive customer management with instant filtering and profile access.",
+        frame: "desktop",
       },
       {
         id: "anastasia10",
         title: "Customer Personal Card (Admin View)",
         description:
           "Centralized customer profile displaying full history of trainings, payments, and actions.",
+        frame: "desktop",
       },
       {
         id: "anastasia11",
         title: "Schedule Management (Admin)",
         description:
           "Admin-controlled scheduling system defining availability for customer bookings.",
+        frame: "desktop",
       },
       {
         id: "anastasia12",
         title: "Manual Booking & Session Completion",
         description:
           "Manual booking and session status management for real-world operational flexibility.",
+        frame: "desktop",
       },
     ],
   },
@@ -337,30 +363,35 @@ export const projects: IProject[] = [
         title: "City Trees Map Overview",
         description:
           "Interactive city map displaying all recorded trees, color-coded by species and scaled marker size based on tree dimensions, with a side panel showing key details for the selected tree.",
+        frame: "desktop",
       },
       {
         id: "greentree2",
         title: "Tree Detail View",
         description:
           "Comprehensive profile of a selected tree including location, biological data, condition, photographs, and QR code access for field identification.",
+        frame: "phone",
       },
       {
         id: "greentree3",
         title: "Species Distribution Map",
         description:
           "Geospatial visualization showing the spatial distribution of a specific tree species across the city.",
+        frame: "desktop",
       },
       {
         id: "greentree4",
         title: "Tree Species Statistics by Municipal District",
         description:
           "Statistical breakdown of tree species counts per municipal district, presented in a comparative bar chart format.",
+        frame: "desktop",
       },
       {
         id: "greentree5",
         title: "Height, Diameter, and Canopy Statistics by Species",
         description:
           "Analytical dashboard presenting aggregated statistics for tree height, trunk diameter, and canopy spread per species using charts and detailed tables.",
+        frame: "desktop",
       },
     ],
   },
@@ -393,48 +424,56 @@ export const projects: IProject[] = [
         title: "App Dashboard (Feature Overview)",
         description:
           "A modern, centralized menu that presents all app modules with a clean, production-style UI.",
+        frame: "desktop",
       },
       {
         id: "voice agent",
         title: "Voice Agent (Mic-Enabled AI)",
         description:
           "A voice-enabled agent interface where users speak via microphone and control behavior through custom system instructions.",
+        frame: "phone",
       },
       {
         id: "project_manager",
         title: "AI Project Manager (Scope & Time Estimation)",
         description:
           "An AI assistant that analyzes a project brief, breaks it into actionable tasks, and estimates time per phase.",
+        frame: "phone",
       },
       {
         id: "image_studio_ai",
         title: "AI Image Studio (Prompt-to-Image)",
         description:
           "A prompt-to-image workspace that generates visuals from user prompts using an AI image model.",
+        frame: "phone",
       },
       {
         id: "web search agent",
         title: "Web Search Agent (Live Research Chat)",
         description:
           "A chat agent that performs web searches and responds with synthesized answers based on online sources.",
+        frame: "phone",
       },
       {
         id: "pdf_analyzer",
         title: "PDF Analyzer (Document Q&A)",
         description:
           "A PDF chat tool that accepts file uploads and enables summarization and question answering over document content.",
+        frame: "phone",
       },
       {
         id: "chat_with_answer_3rows",
         title: "Concise Chat Mode (3-Line Answers)",
         description:
           "A chat experience optimized for speed and clarity, limiting responses to a maximum of three lines.",
+        frame: "desktop",
       },
       {
         id: "Pricing Plan",
         title: "Pricing Page (Demo UI)",
         description:
           "A playful pricing-plan page included to complete the product feel and demonstrate real-world app structure.",
+        frame: "desktop",
       },
     ],
   },
@@ -472,18 +511,21 @@ export const projects: IProject[] = [
         title: "Scan Input with Logo Management",
         description:
           "Retailers can set logo and let their customers scan to find the price of the items.",
+        frame: "desktop",
       },
       {
         id: "pricechecker2",
         title: "Item Scan Interface",
         description:
           "Simple scanning interface that allows customers to quickly check prices and view product information.",
+        frame: "desktop",
       },
       {
         id: "pricechecker3",
         title: "Price & Discount Display",
         description:
           "Clear display of current prices, discounts, and promotional information for scanned items.",
+        frame: "desktop",
       },
     ],
   },

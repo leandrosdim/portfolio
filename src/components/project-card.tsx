@@ -13,7 +13,13 @@ const statusVariant = {
   Building: "building" as const,
 };
 
+function isFirstSlidePhone(project: IProject): boolean {
+  return project.slides?.[0]?.frame === "phone";
+}
+
 export default function ProjectCard({ project, featured = false }: IProjectCardProps) {
+  const isPhone = isFirstSlidePhone(project);
+
   return (
     <Link
       href={`/portfolio/${project.id}`}
@@ -22,14 +28,35 @@ export default function ProjectCard({ project, featured = false }: IProjectCardP
       }`}
     >
       {/* Screenshot area */}
-      <div className="relative aspect-video bg-brand-secondary overflow-hidden">
+      <div className={`relative bg-brand-secondary overflow-hidden ${isPhone ? "flex items-center justify-center py-6 px-4" : "aspect-video"}`}>
         {project.slides && project.slides.length > 0 ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={`/${project.id}/${project.slides[0].id}.jpg`}
-            alt={project.title}
-            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-          />
+          isPhone ? (
+            <div className="relative rounded-[20px] border-[3px] border-brand-border bg-brand-bg p-1.5 shadow-glass-lg w-[120px]">
+              <div className="relative overflow-hidden rounded-[16px] bg-brand-secondary">
+                <div className="absolute inset-x-0 top-0 z-10 flex h-3 items-center justify-center">
+                  <div className="h-[3px] w-[36px] rounded-full bg-brand-border" />
+                </div>
+                <div className="relative aspect-[9/19.5] overflow-hidden rounded-[16px]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`/${project.id}/${project.slides[0].id}.jpg`}
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="absolute inset-x-0 bottom-0.5 z-10 flex justify-center">
+                  <div className="h-[3px] w-[48px] rounded-full bg-brand-border" />
+                </div>
+              </div>
+            </div>
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={`/${project.id}/${project.slides[0].id}.jpg`}
+              alt={project.title}
+              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            />
+          )
         ) : (
           <div className="w-full h-full flex items-center justify-center">
             <div className="text-brand-text-secondary/30">
@@ -61,25 +88,27 @@ export default function ProjectCard({ project, featured = false }: IProjectCardP
           <Badge variant="accent">{project.type}</Badge>
         </div>
         {/* Hover overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-          <span className="text-sm font-medium text-brand-accent inline-flex items-center gap-1">
-            View Case Study
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 transform group-hover:translate-x-1 transition-transform"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </span>
-        </div>
+        {!isPhone && (
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <span className="text-sm font-medium text-brand-accent inline-flex items-center gap-1">
+              View Case Study
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 transform group-hover:translate-x-1 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Content */}

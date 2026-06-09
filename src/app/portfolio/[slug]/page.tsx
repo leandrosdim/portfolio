@@ -7,6 +7,7 @@ import Container from "@/components/ui/container";
 import ScrollReveal from "@/components/scroll-reveal";
 import Badge from "@/components/ui/badge";
 import Button from "@/components/ui/button";
+import PhoneFrame from "@/components/phone-frame";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -165,30 +166,44 @@ export default async function ProjectDetailPage({ params }: Props) {
             <ScrollReveal delay={350}>
               <div className="mb-12">
                 <h2 className="text-2xl font-bold mb-6">Screenshots</h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {project.slides.map((slide) => (
-                    <div
-                      key={slide.id}
-                      className="group relative aspect-video rounded-glass overflow-hidden border border-brand-border bg-brand-secondary"
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={`/${project.id}/${slide.id}.jpg`}
-                        alt={slide.title}
-                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <div>
-                          <p className="text-sm font-medium text-brand-text-primary">
-                            {slide.title}
-                          </p>
-                          <p className="text-xs text-brand-text-secondary mt-1 line-clamp-2">
-                            {slide.description}
-                          </p>
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {project.slides.map((slide) =>
+                    slide.frame === "phone" ? (
+                      <div
+                        key={slide.id}
+                        className="flex justify-center"
+                      >
+                        <PhoneFrame
+                          src={`/${project.id}/${slide.id}.jpg`}
+                          alt={slide.title}
+                          title={slide.title}
+                          description={slide.description}
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        key={slide.id}
+                        className="group relative aspect-video rounded-glass overflow-hidden border border-brand-border bg-brand-secondary"
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={`/${project.id}/${slide.id}.jpg`}
+                          alt={slide.title}
+                          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                          <div>
+                            <p className="text-sm font-medium text-brand-text-primary">
+                              {slide.title}
+                            </p>
+                            <p className="text-xs text-brand-text-secondary mt-1 line-clamp-2">
+                              {slide.description}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  )}
                 </div>
               </div>
             </ScrollReveal>
