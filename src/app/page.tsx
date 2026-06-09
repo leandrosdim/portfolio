@@ -73,6 +73,8 @@ export default function Home() {
                   height={240}
                   className="rounded-full mb-6 opacity-80 hover:opacity-100 transition-opacity duration-300"
                   style={{
+                    width: "auto",
+                    height: "auto",
                     WebkitMaskImage: "radial-gradient(circle, black 40%, transparent 100%)",
                     maskImage: "radial-gradient(circle, black 40%, transparent 100%)",
                   }}

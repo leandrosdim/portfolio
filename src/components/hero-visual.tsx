@@ -1,6 +1,171 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+interface IToken {
+  text: string;
+  className: string;
+}
+
+interface ILine {
+  indent: number;
+  tokens: IToken[];
+}
+
+const CODE_LINES: ILine[] = [
+  {
+    indent: 0,
+    tokens: [
+      { text: "const", className: "text-xs font-mono text-violet-400/80" },
+      { text: " developer", className: "text-xs font-mono text-brand-accent" },
+      { text: " =", className: "text-xs font-mono text-brand-text-secondary/50" },
+      { text: " {", className: "text-xs font-mono text-amber-400/80" },
+    ],
+  },
+  {
+    indent: 1,
+    tokens: [
+      { text: "name", className: "text-xs font-mono text-emerald-400/80" },
+      { text: ":", className: "text-xs font-mono text-brand-text-secondary/50" },
+      { text: ' "Leandros Dim"', className: "text-xs font-mono text-amber-300/70" },
+      { text: ",", className: "text-xs font-mono text-brand-text-secondary/30" },
+    ],
+  },
+  {
+    indent: 1,
+    tokens: [
+      { text: "role", className: "text-xs font-mono text-emerald-400/80" },
+      { text: ":", className: "text-xs font-mono text-brand-text-secondary/50" },
+      { text: ' "Full-Stack Engineer"', className: "text-xs font-mono text-amber-300/70" },
+      { text: ",", className: "text-xs font-mono text-brand-text-secondary/30" },
+    ],
+  },
+  {
+    indent: 1,
+    tokens: [
+      { text: "skills", className: "text-xs font-mono text-emerald-400/80" },
+      { text: ":", className: "text-xs font-mono text-brand-text-secondary/50" },
+      { text: " [", className: "text-xs font-mono text-amber-400/80" },
+    ],
+  },
+  {
+    indent: 2,
+    tokens: [
+      { text: '"React"', className: "text-xs font-mono text-brand-accent/80" },
+      { text: ",", className: "text-xs font-mono text-brand-text-secondary/30" },
+      { text: ' "Next.js"', className: "text-xs font-mono text-brand-accent/80" },
+      { text: ",", className: "text-xs font-mono text-brand-text-secondary/30" },
+      { text: ' "Postgres"', className: "text-xs font-mono text-brand-accent/80" },
+    ],
+  },
+  {
+    indent: 1,
+    tokens: [
+      { text: "]", className: "text-xs font-mono text-amber-400/80" },
+      { text: ",", className: "text-xs font-mono text-brand-text-secondary/30" },
+    ],
+  },
+  {
+    indent: 0,
+    tokens: [
+      { text: "}", className: "text-xs font-mono text-amber-400/80" },
+    ],
+  },
+  {
+    indent: 0,
+    tokens: [
+      { text: "export", className: "text-xs font-mono text-violet-400/80" },
+      { text: " default", className: "text-xs font-mono text-violet-400/80" },
+      { text: " developer", className: "text-xs font-mono text-brand-accent" },
+    ],
+  },
+];
+
+function getLineText(line: ILine): string {
+  return line.tokens.map((t) => t.text).join("");
+}
+
+function renderLineTokens(line: ILine, visibleChars: number): React.ReactNode[] {
+  const nodes: React.ReactNode[] = [];
+  let remaining = visibleChars;
+
+  for (let i = 0; i < line.tokens.length && remaining > 0; i++) {
+    const token = line.tokens[i];
+    if (remaining >= token.text.length) {
+      nodes.push(
+        <span key={i} className={token.className}>
+          {token.text}
+        </span>
+      );
+      remaining -= token.text.length;
+    } else {
+      nodes.push(
+        <span key={i} className={token.className}>
+          {token.text.slice(0, remaining)}
+        </span>
+      );
+      remaining = 0;
+    }
+  }
+
+  return nodes;
+}
+
 export default function HeroVisual() {
+  const [lineIndex, setLineIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [done, setDone] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const skippedRef = useRef(false);
+
+  const totalLines = CODE_LINES.length;
+
+  useEffect(() => {
+    if (done) return;
+
+    const lineText = getLineText(CODE_LINES[lineIndex]);
+    const typingSpeed = 20;
+    const linePause = 120;
+
+    if (charIndex < lineText.length) {
+      const timer = setTimeout(() => {
+        setCharIndex((c) => c + 1);
+      }, typingSpeed);
+      return () => clearTimeout(timer);
+    } else if (lineIndex < totalLines - 1) {
+      const timer = setTimeout(() => {
+        setLineIndex((l) => l + 1);
+        setCharIndex(0);
+      }, linePause);
+      return () => clearTimeout(timer);
+    } else {
+      setDone(true);
+    }
+  }, [lineIndex, charIndex, done, totalLines]);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && !skippedRef.current) {
+          skippedRef.current = true;
+          setLineIndex(totalLines - 1);
+          setCharIndex(getLineText(CODE_LINES[totalLines - 1]).length);
+          setDone(true);
+        }
+      },
+      { threshold: 0 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [totalLines]);
+
   return (
     <div
+      ref={containerRef}
       className="relative w-full max-w-lg mx-auto"
       aria-hidden="true"
     >
@@ -23,81 +188,104 @@ export default function HeroVisual() {
         </div>
 
         <div className="p-5 space-y-4">
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-mono text-brand-text-secondary/50 select-none">1</span>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-mono text-violet-400/80">const</span>
-              <span className="text-xs font-mono text-brand-accent">developer</span>
-              <span className="text-xs font-mono text-brand-text-secondary/50">=</span>
-              <span className="text-xs font-mono text-amber-400/80">{"{"}</span>
-            </div>
-          </div>
+          {CODE_LINES.map((line, i) => {
+            const lineText = getLineText(line);
+            const indentPx = line.indent * 16;
 
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-mono text-brand-text-secondary/50 select-none">2</span>
-            <div className="flex items-center gap-2 pl-4">
-              <span className="text-xs font-mono text-emerald-400/80">name</span>
-              <span className="text-xs font-mono text-brand-text-secondary/50">:</span>
-              <span className="text-xs font-mono text-amber-300/70">&quot;Leandros Dim&quot;</span>
-              <span className="text-xs font-mono text-brand-text-secondary/30">,</span>
-            </div>
-          </div>
+            if (i < lineIndex) {
+              return (
+                <div key={i} className="flex items-center gap-3">
+                  <span className="text-xs font-mono text-brand-text-secondary/50 select-none">
+                    {i + 1}
+                  </span>
+                  <div
+                    className="flex items-center gap-2"
+                    style={{ paddingLeft: `${indentPx}px` }}
+                  >
+                    {line.tokens.map((token, ti) => (
+                      <span key={ti} className={token.className}>
+                        {token.text}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
 
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-mono text-brand-text-secondary/50 select-none">3</span>
-            <div className="flex items-center gap-2 pl-4">
-              <span className="text-xs font-mono text-emerald-400/80">role</span>
-              <span className="text-xs font-mono text-brand-text-secondary/50">:</span>
-              <span className="text-xs font-mono text-amber-300/70">&quot;Full-Stack Engineer&quot;</span>
-              <span className="text-xs font-mono text-brand-text-secondary/30">,</span>
-            </div>
-          </div>
+            if (i === lineIndex && !done) {
+              const showSeparator =
+                i === 7;
 
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-mono text-brand-text-secondary/50 select-none">4</span>
-            <div className="flex items-center gap-2 pl-4">
-              <span className="text-xs font-mono text-emerald-400/80">skills</span>
-              <span className="text-xs font-mono text-brand-text-secondary/50">:</span>
-              <span className="text-xs font-mono text-amber-400/80">[</span>
-            </div>
-          </div>
+              return (
+                <div
+                  key={i}
+                  className={
+                    showSeparator
+                      ? "flex items-center gap-3 mt-3 pt-3 border-t border-brand-border"
+                      : "flex items-center gap-3"
+                  }
+                >
+                  <span className="text-xs font-mono text-brand-text-secondary/50 select-none">
+                    {i + 1}
+                  </span>
+                  <div
+                    className="flex items-center gap-2"
+                    style={{ paddingLeft: `${indentPx}px` }}
+                  >
+                    {renderLineTokens(line, charIndex)}
+                    <span className="text-xs font-mono text-brand-accent animate-blink">
+                      |
+                    </span>
+                  </div>
+                </div>
+              );
+            }
 
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-mono text-brand-text-secondary/50 select-none">5</span>
-            <div className="flex items-center gap-2 pl-8">
-              <span className="text-xs font-mono text-brand-accent/80">&quot;React&quot;</span>
-              <span className="text-xs font-mono text-brand-text-secondary/30">,</span>
-              <span className="text-xs font-mono text-brand-accent/80">&quot;Next.js&quot;</span>
-              <span className="text-xs font-mono text-brand-text-secondary/30">,</span>
-              <span className="text-xs font-mono text-brand-accent/80">&quot;Postgres&quot;</span>
-            </div>
-          </div>
+            if (i === lineIndex && done) {
+              const showSeparator = i === 7;
 
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-mono text-brand-text-secondary/50 select-none">6</span>
-            <div className="flex items-center gap-2 pl-4">
-              <span className="text-xs font-mono text-amber-400/80">]</span>
-              <span className="text-xs font-mono text-brand-text-secondary/30">,</span>
-            </div>
-          </div>
+              return (
+                <div
+                  key={i}
+                  className={
+                    showSeparator
+                      ? "flex items-center gap-3 mt-3 pt-3 border-t border-brand-border"
+                      : "flex items-center gap-3"
+                  }
+                >
+                  <span className="text-xs font-mono text-brand-text-secondary/50 select-none">
+                    {i + 1}
+                  </span>
+                  <div
+                    className="flex items-center gap-2"
+                    style={{ paddingLeft: `${indentPx}px` }}
+                  >
+                    {line.tokens.map((token, ti) => (
+                      <span key={ti} className={token.className}>
+                        {token.text}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
 
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-mono text-brand-text-secondary/50 select-none">7</span>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-mono text-amber-400/80">{"}"}</span>
-            </div>
-          </div>
+            if (i === lineIndex + 1) {
+              const isSeparatorLine = i === 7;
 
-          <div className="flex items-center gap-3 mt-3 pt-3 border-t border-brand-border">
-            <span className="text-xs font-mono text-brand-text-secondary/50 select-none">8</span>
-            <div className="flex items-center gap-1.5">
-              <span className="text-xs font-mono text-violet-400/80">export</span>
-              <span className="text-xs font-mono text-violet-400/80">default</span>
-              <span className="text-xs font-mono text-brand-accent">developer</span>
-            </div>
-          </div>
+              if (isSeparatorLine && !done) {
+                return null;
+              }
+            }
 
-          <div className="mt-3 pt-3 border-t border-brand-border">
+            return null;
+          })}
+
+          <div
+            className={`mt-3 pt-3 border-t border-brand-border transition-opacity duration-500 ${
+              done ? "opacity-100" : "opacity-0"
+            }`}
+          >
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-emerald-400/80 animate-pulse-glow" />
