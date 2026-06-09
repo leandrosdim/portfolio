@@ -8,28 +8,27 @@ class MemoryRateLimiter {
     const key = `contact_${identifier}`;
     const requestData = this.requests.get(key) || { count: 0, resetTime: now + windowMs };
 
-    // Reset counter if window has passed
     if (now > requestData.resetTime) {
       requestData.count = 0;
       requestData.resetTime = now + windowMs;
     }
 
-    // Increment request count
     requestData.count++;
-
-    // Update map
     this.requests.set(key, requestData);
 
-    // Return true if rate limited
     return requestData.count > maxRequests;
   }
-  
-  // Method to get real client IP in production
-  getRealIP(_request: Request): string {
-    // In a real implementation, you would extract the IP from headers like:
-    // x-forwarded-for, x-real-ip, etc.
-    // For now, we'll use a placeholder
-    return 'unknown';
+
+  getClientIP(headers: Headers): string {
+    const forwarded = headers.get("x-forwarded-for");
+    if (forwarded) {
+      return forwarded.split(",")[0].trim();
+    }
+    const realIP = headers.get("x-real-ip");
+    if (realIP) {
+      return realIP.trim();
+    }
+    return "unknown";
   }
 }
 

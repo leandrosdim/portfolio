@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, useRef } from "react";
 import { profile } from "@/content/profile";
 import { submitContactForm } from "./actions/submitContactForm";
 import Section from "@/components/ui/section";
 import Container from "@/components/ui/container";
 import ScrollReveal from "@/components/scroll-reveal";
+import Turnstile, { ITurnstileHandle } from "@/components/turnstile";
 
 const PROJECT_TYPES = [
   "Web Application",
@@ -17,6 +18,8 @@ const PROJECT_TYPES = [
   "Other",
 ];
 
+const TURNSTILE_TIMEOUT_MS = 10000;
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -27,6 +30,74 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [verifying, setVerifying] = useState(false);
+  const turnstileRef = useRef<ITurnstileHandle>(null);
+  const tokenRef = useRef("");
+  const turnstileEnabled = !!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  const submittedRef = useRef(false);
+
+  const handleTurnstileVerify = useCallback((token: string) => {
+    tokenRef.current = token;
+  }, []);
+
+  const handleTurnstileExpired = useCallback(() => {
+    tokenRef.current = "";
+  }, []);
+
+  const handleTurnstileError = useCallback(() => {
+    tokenRef.current = "";
+  }, []);
+
+  const doSubmitForm = async (token: string) => {
+    if (submittedRef.current) return;
+    submittedRef.current = true;
+
+    try {
+      const formDataObj = new FormData();
+      formDataObj.append("name", formData.name);
+      formDataObj.append("email", formData.email);
+      formDataObj.append("subject", formData.projectType || "General Inquiry");
+      formDataObj.append("message", formData.message);
+      formDataObj.append("website", "");
+      formDataObj.append("turnstileToken", token);
+
+      const result = await submitContactForm(formDataObj);
+
+      if (result.success) {
+        setSubmitSuccess(true);
+        setFormData({ name: "", email: "", projectType: "", message: "" });
+        tokenRef.current = "";
+        setTimeout(() => setSubmitSuccess(false), 5000);
+      } else {
+        setSubmitError(result.error || "Failed to send message");
+        turnstileRef.current?.reset();
+        tokenRef.current = "";
+      }
+    } catch {
+      setSubmitError("An unexpected error occurred");
+    } finally {
+      setIsSubmitting(false);
+      setVerifying(false);
+    }
+  };
+
+  const waitForTokenAndSubmit = useCallback(() => {
+    const start = Date.now();
+    const interval = setInterval(() => {
+      if (tokenRef.current) {
+        clearInterval(interval);
+        setVerifying(false);
+        doSubmitForm(tokenRef.current);
+        return;
+      }
+      if (Date.now() - start > TURNSTILE_TIMEOUT_MS) {
+        clearInterval(interval);
+        setVerifying(false);
+        doSubmitForm("");
+      }
+    }, 200);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -41,6 +112,7 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError("");
+    submittedRef.current = false;
 
     if (!formData.name.trim()) {
       setSubmitError("Name is required");
@@ -66,28 +138,15 @@ export default function ContactPage() {
       return;
     }
 
-    try {
-      const formDataObj = new FormData();
-      formDataObj.append("name", formData.name);
-      formDataObj.append("email", formData.email);
-      formDataObj.append("subject", formData.projectType || "General Inquiry");
-      formDataObj.append("message", formData.message);
-      formDataObj.append("website", "");
-
-      const result = await submitContactForm(formDataObj);
-
-      if (result.success) {
-        setSubmitSuccess(true);
-        setFormData({ name: "", email: "", projectType: "", message: "" });
-        setTimeout(() => setSubmitSuccess(false), 5000);
-      } else {
-        setSubmitError(result.error || "Failed to send message");
-      }
-    } catch {
-      setSubmitError("An unexpected error occurred");
-    } finally {
-      setIsSubmitting(false);
+    if (turnstileEnabled) {
+      setVerifying(true);
+      tokenRef.current = "";
+      turnstileRef.current?.execute();
+      waitForTokenAndSubmit();
+      return;
     }
+
+    await doSubmitForm("");
   };
 
   return (
@@ -294,6 +353,42 @@ export default function ContactPage() {
                       <input type="text" id="website" name="website" className="hidden" />
                     </div>
 
+                    {turnstileEnabled && verifying && (
+                      <div className="flex items-center gap-3 justify-center py-2">
+                        <svg
+                          className="animate-spin h-5 w-5 text-brand-accent"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                          />
+                        </svg>
+                        <span className="text-sm text-brand-text-secondary">Verifying you&#39;re human&hellip;</span>
+                      </div>
+                    )}
+
+                    {turnstileEnabled && (
+                      <Turnstile
+                        ref={turnstileRef}
+                        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                        onVerify={handleTurnstileVerify}
+                        onExpired={handleTurnstileExpired}
+                        onError={handleTurnstileError}
+                      />
+                    )}
+
                     <div>
                       <label
                         htmlFor="name"
@@ -346,9 +441,9 @@ export default function ContactPage() {
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-lg bg-brand-bg border border-brand-border text-brand-text-primary focus:border-brand-accent focus:ring-1 focus:ring-brand-accent/50 focus:outline-none transition-all duration-200 appearance-none"
                       >
-                        <option value="">Select a project type</option>
+                        <option value="" className="bg-[#0B0F19] text-[#F8FAFC]">Select a project type</option>
                         {PROJECT_TYPES.map((type) => (
-                          <option key={type} value={type}>
+                          <option key={type} value={type} className="bg-[#0B0F19] text-[#F8FAFC]">
                             {type}
                           </option>
                         ))}
@@ -383,9 +478,13 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-glow hover:shadow-glow-lg"
+                      className="w-full bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed shadow-glow hover:shadow-glow-lg"
                     >
-                      {isSubmitting ? "Sending..." : "Let's Build Something Great"}
+                      {verifying
+                        ? "Verifying you're human..."
+                        : isSubmitting
+                          ? "Sending..."
+                          : "Let's Build Something Great"}
                     </button>
                   </form>
                 )}

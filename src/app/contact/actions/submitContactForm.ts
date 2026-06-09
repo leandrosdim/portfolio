@@ -5,6 +5,7 @@ import { Resend } from 'resend';
 import { validateContactForm, sanitizeFormData, validateAndSanitizeEmail } from '@/lib/security';
 import { memoryRateLimit } from '@/lib/rateLimit';
 import { validateEnvironmentVariables } from '@/lib/envValidation';
+import { verifyTurnstileToken } from '@/lib/turnstile';
 
 // Initialize Supabase client for server-side operations
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
@@ -23,8 +24,9 @@ export async function submitContactForm(formData: FormData) {
       return { success: false, error: 'Service is not properly configured. Please contact the administrator.' };
     }
     
-    // Get IP address for rate limiting (in production, you might want to get the real IP)
-    const ip = 'unknown';
+    // Get IP address for rate limiting from request headers
+    const headersList = await import('next/headers').then(m => m.headers());
+    const ip = memoryRateLimit.getClientIP(headersList);
     
     // Rate limiting - prevent spam
     if (memoryRateLimit.isRateLimited(ip)) {
@@ -41,6 +43,20 @@ export async function submitContactForm(formData: FormData) {
     // Spam protection - check honeypot field
     if (honeypot) {
       return { success: false, error: 'Spam detected' };
+    }
+    
+    // Turnstile CAPTCHA verification
+    const turnstileToken = formData.get('turnstileToken') as string;
+    const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+
+    if (turnstileSecret && turnstileToken) {
+      const turnstileResult = await verifyTurnstileToken(turnstileToken, turnstileSecret);
+      if (!turnstileResult.success) {
+        console.error('Turnstile verification failed:', turnstileResult.error);
+        return { success: false, error: 'Bot verification failed. Please try again.' };
+      }
+    } else if (turnstileSecret && !turnstileToken) {
+      console.warn('Turnstile enabled but no token received — allowing with warning (possible timeout or blocked script)');
     }
     
     // Validate required fields
