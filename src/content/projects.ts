@@ -331,6 +331,12 @@ export const projects: IProject[] = [
           "Manual booking and session status management for real-world operational flexibility.",
         frame: "desktop",
       },
+       {
+        id: "anastasia13",
+        title: "In-App Camera & Session Capture",
+        description: "Built-in camera integration for capturing session photos and training moments",
+        frame: "phone",
+      },
     ],
   },
   {
