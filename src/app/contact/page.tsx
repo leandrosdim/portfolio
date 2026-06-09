@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { profile } from "@/content/profile";
 import { submitContactForm } from "./actions/submitContactForm";
 import Section from "@/components/ui/section";
@@ -33,8 +33,13 @@ export default function ContactPage() {
   const [verifying, setVerifying] = useState(false);
   const turnstileRef = useRef<ITurnstileHandle>(null);
   const tokenRef = useRef("");
+  const formDataRef = useRef(formData);
   const turnstileEnabled = !!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const submittedRef = useRef(false);
+
+  useEffect(() => {
+    formDataRef.current = formData;
+  }, [formData]);
 
   const handleTurnstileVerify = useCallback((token: string) => {
     tokenRef.current = token;
@@ -53,11 +58,12 @@ export default function ContactPage() {
     submittedRef.current = true;
 
     try {
+      const fd = formDataRef.current;
       const formDataObj = new FormData();
-      formDataObj.append("name", formData.name);
-      formDataObj.append("email", formData.email);
-      formDataObj.append("subject", formData.projectType || "General Inquiry");
-      formDataObj.append("message", formData.message);
+      formDataObj.append("name", fd.name);
+      formDataObj.append("email", fd.email);
+      formDataObj.append("subject", fd.projectType || "General Inquiry");
+      formDataObj.append("message", fd.message);
       formDataObj.append("website", "");
       formDataObj.append("turnstileToken", token);
 
@@ -96,7 +102,6 @@ export default function ContactPage() {
         doSubmitForm("");
       }
     }, 200);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (
