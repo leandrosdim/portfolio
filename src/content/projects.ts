@@ -600,4 +600,80 @@ export const projects: IProject[] = [
       },
     ],
   },
+  {
+    id: "myinvites",
+    title: "MyInvites",
+    description: "Wedding invitation and responses web app SaaS with Google Auth.",
+    longDescription: "A SaaS platform for creating, customizing, and managing wedding invitations with seamless Google authentication. Enables couples to design personalized invites, track RSVPs in real-time, and manage guest lists, while providing guests with a smooth mobile-responsive experience for responding to events.",
+    category: "SaaS Product",
+    technologies: ["Next.js", "TypeScript", "Google Auth", "Tailwind CSS", "PostgreSQL"],
+    role: "Full-Stack Developer",
+    challenge: "Creating a seamless user experience for both couples (inviters) and guests, while ensuring mobile responsiveness and secure authentication.",
+    solution: "Implemented Google OAuth for quick sign-up, responsive design for all devices, and real-time RSVP tracking with database synchronization.",
+    results: [
+      "Streamlined invitation creation process with customizable templates",
+      "Real-time guest response tracking with analytics",
+      "Mobile-optimized experience for guests to respond on any device"
+    ],
+    url: "https://myinvites.gr",
+    status: "Live",
+    type: "Web",
+    featured: true,
+    projectOrder: 9,
+    slides: [
+      {
+        id: "myinvites1",
+        title: "Google Authentication Flow",
+        description: "Secure login using Google OAuth, enabling quick sign-up and sign-in for users.",
+        frame: "phone",
+      },
+      {
+        id: "myinvites2",
+        title: "Dashboard Overview",
+        description: "Centralized invitation management dashboard with analytics and quick actions.",
+        frame: "phone",
+      },
+      {
+        id: "myinvites3a",
+        title: "Template Selection",
+        description: "Browse and select from customizable wedding invitation templates.",
+        frame: "phone",
+      },
+      {
+        id: "myinvites3b",
+        title: "Customization Panel",
+        description: "Personalize invitation details including text, colors, and layout options.",
+        frame: "phone",
+      },
+      {
+        id: "myinvites3c",
+        title: "Preview & Export",
+        description: "Real-time preview of the invitation with export options for print or digital sharing.",
+        frame: "phone",
+      },
+      {
+        id: "myinvites4a",
+        title: "RSVP Tracking Dashboard",
+        description: "Monitor guest responses with real-time updates and status indicators.",
+        frame: "phone",
+      },
+      {
+        id: "myinvites4b",
+        title: "Guest Management Table",
+        description: "Organize and filter guest lists with personalized notes and contact details.",
+        frame: "phone",
+      },
+      {
+        id: "myinvites4c",
+        title: "Post-Event Thank You Page",
+        description: "Customizable thank you page for guests with links to share photos and feedback.",
+        frame: "phone",
+      },
+      {
+        id: "myinvites5",
+        title: "Mobile-Responsive Design",
+        description: "Seamless mobile experience for managing invitations on-the-go with optimized touch controls.",
+      }
+    ]
+  },
 ];
