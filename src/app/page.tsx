@@ -2,7 +2,7 @@ import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 import { skills } from "@/content/skills";
 import { services } from "@/content/services";
-import Image from "next/image";
+
 import Section from "@/components/ui/section";
 import Container from "@/components/ui/container";
 import ScrollReveal from "@/components/scroll-reveal";
@@ -66,20 +66,15 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-6 items-center min-h-[calc(100vh-52px-120px)]">
             <div>
               <ScrollReveal>
-                <Image
-                  src="/logo-dark.jpg"
-                  alt="Leandros Dimitriadis"
-                  width={240}
-                  height={240}
-                  className="rounded-full mb-6 opacity-80 hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    width: "auto",
-                    height: "auto",
-                    WebkitMaskImage: "radial-gradient(circle, black 40%, transparent 100%)",
-                    maskImage: "radial-gradient(circle, black 40%, transparent 100%)",
-                  }}
-                  priority
-                />
+                <div className="inline-flex items-center gap-3 rounded-glass border border-brand-border bg-[var(--glass-bg)] backdrop-blur-glass px-4 py-2.5 mb-6 shadow-glow transition-all duration-300 hover:border-brand-border-hover hover:bg-[var(--glass-bg-hover)]">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-glass bg-brand-accent/10 border border-brand-accent/20 text-sm font-bold text-brand-accent shrink-0">
+                    LD
+                  </span>
+                  <div>
+                    <div className="text-sm font-semibold text-brand-text-primary leading-tight">Leandros Dimitriadis</div>
+                    <div className="text-xs text-brand-text-secondary leading-tight">Custom Software Development</div>
+                  </div>
+                </div>
               </ScrollReveal>
 
               <ScrollReveal delay={100}>
