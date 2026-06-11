@@ -46,7 +46,7 @@ export default function ScrollReveal({
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
+      className={`h-full transition-all duration-700 ease-out ${
         isVisible
           ? "opacity-100 translate-y-0 translate-x-0 scale-100"
           : `opacity-0 ${directionStyles[direction]}`
