@@ -538,22 +538,24 @@ export const projects: IProject[] = [
   },
   {
     id: "crm",
-    title: "CRM",
+    title: "Iosifidis CRM",
     description:
-      "Customer relationship management with multi-channel actions and timeline views.",
+      "Custom CRM and workflow management platform for electrical plan leads, documents, costs, and customer communication.",
     category: "Business Application",
     longDescription:
-      "A customer relationship management system enabling SMS, email, call, and meeting actions per customer. Features a unified timeline view per customer, overall activity overview, and analytics dashboards — designed to give businesses complete visibility into customer relationships and interactions.",
-    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Twilio"],
-    role: "Developer",
+      "A custom business CRM built for managing electrical plan requests, customers, partners, documents, costs, and communication workflows. The platform centralizes lead tracking, SMS/email communication, document upload status, cost management, partner-based reporting, and admin configuration in one secure web application.",
+    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Twilio", "Material UI"],
+    role: "Full-Stack Developer",
     challenge:
-      "Creating unified timeline views for customer interactions while integrating multiple communication channels into a single interface.",
+      "Replacing scattered manual workflows with a centralized CRM that could track electrical plan leads, manage document states, calculate costs, and support direct customer communication.",
     solution:
-      "Built timeline component with activity grouping and implemented multi-channel communication APIs with centralized customer tracking.",
+      "Built a full-stack CRM with authenticated access, lead management tables, detailed lead pages, SMS/email communication tools, document upload workflows, admin-managed lookup tables, user management, and dashboard analytics.",
     results: [
-      "Unified multi-channel customer interactions",
-      "Complete timeline view per customer",
-      "Activity overview across all relationships",
+      "Centralized lead and customer management in one web application",
+      "Improved operational visibility with dashboard metrics and partner-based reporting",
+      "Streamlined document tracking with finalized, non-finalized, and extra document sections",
+      "Added SMS/email communication tools directly inside each lead workflow",
+      "Enabled admin users to manage users, lookup tables, instructions, states, and cost types"
     ],
     url: "https://app.ilektrologikosxedio.gr/",
     status: "Live",
@@ -563,30 +565,54 @@ export const projects: IProject[] = [
     slides: [
       {
         id: "crm1",
-        title: "Unified Customer Timeline",
-        description: "Centralized timeline view showing all customer interactions across channels with activity grouping and filtering options."
+        title: "CRM Analytics Dashboard",
+        description:
+          "Main admin dashboard with KPI cards for users, customers, leads, and partners, plus monthly and partner-based lead cost analytics.",
+        frame: "desktop"
       },
       {
         id: "crm2",
-        title: "Multi-Channel Action Panel",
-        description: "Integrated communication interface for sending SMS, email, and call actions directly from customer profiles with audit trails."
+        title: "Electrical Plans Lead List",
+        description:
+          "Operational lead table for managing electrical plan requests with date filters, partner search, add-new-plan action, statuses, instructions, and cost fields.",
+        frame: "desktop"
       },
       {
         id: "crm3",
-        title: "Analytics Dashboard",
-        description: "Overview of relationship metrics including engagement rates, conversion statistics, and activity heatmaps across customer segments."
+        title: "Lead Details & Communication",
+        description:
+          "Detailed lead profile showing customer, partner, declaration status, check type, instructions, and integrated SMS/email communication tools.",
+        frame: "desktop"
       },
       {
         id: "crm4",
-        title: "Customer Card & History",
-        description: "Comprehensive customer profile displaying complete interaction history, notes, and relationship status with role-based access controls."
+        title: "Document Workflow Management",
+        description:
+          "Document management area for uploading and tracking not-finalized, finalized, and extra documents with completion states and cost fields.",
+        frame: "desktop"
       },
       {
         id: "crm5",
-        title: "Activity Overview",
-        description: "Consolidated view of all relationship activities with search, filtering, and export capabilities for operational visibility."
+        title: "User Management",
+        description:
+          "Admin user management screen for viewing, creating, editing, and deleting users with assigned access levels.",
+        frame: "desktop"
+      },
+      {
+        id: "crm6",
+        title: "Admin Configuration Panel",
+        description:
+          "Admin panel for maintaining lookup data such as instructions, message templates, states, check types, YDEs, and cost types.",
+        frame: "desktop"
+      },
+      {
+        id: "crm7",
+        title: "Secure Sign-In",
+        description:
+          "Simple authentication screen for protected access to the CRM platform.",
+        frame: "desktop"
       }
-    ],
+    ]
   },
   {
     id: "law-agent",
@@ -613,56 +639,25 @@ export const projects: IProject[] = [
     projectOrder: 9,
     slides: [
       {
-        id: "crm1",
-        title: "Unified Customer Timeline",
-        description: "Centralized timeline view showing all customer interactions across channels with activity grouping and filtering options."
-      },
-      {
-        id: "crm2",
-        title: "Multi-Channel Action Panel",
-        description: "Integrated communication interface for sending SMS, email, and call actions directly from customer profiles with audit trails."
-      },
-      {
-        id: "crm3",
-        title: "Analytics Dashboard",
-        description: "Overview of relationship metrics including engagement rates, conversion statistics, and activity heatmaps across customer segments."
-      },
-      {
-        id: "crm4",
-        title: "Customer Card & History",
-        description: "Comprehensive customer profile displaying complete interaction history, notes, and relationship status with role-based access controls."
-      },
-      {
-        id: "crm5",
-        title: "Activity Overview",
-        description: "Consolidated view of all relationship activities with search, filtering, and export capabilities for operational visibility."
-      },
-      {
-        id: "crm6",
-        title: "Role-Based Access Controls",
-        description: "Granular permission system allowing administrators to manage user roles and access levels for secure team collaboration."
-      },
-      {
-        id: "crm7",
-        title: "Real-Time Notifications",
-        description: "Instant alerts and activity feeds for new customer interactions, ensuring timely team responses and engagement."
+        id: "under_construction",
+        title: "Under Construction (Coming Soon)",
+        description: "This feature is currently in development, and a polished version will be available in a future update."
       }
     ],
   },
   {
     id: "myinvites",
     title: "MyInvites",
-    description: "Wedding invitation and responses web app SaaS with Google Auth.",
-    longDescription: "A SaaS platform for creating, customizing, and managing wedding invitations with seamless Google authentication. Enables couples to design personalized invites, track RSVPs in real-time, and manage guest lists, while providing guests with a smooth mobile-responsive experience for responding to events.",
-    category: "SaaS Product",
+    description: "Wedding invitation SaaS for creating digital invites, sharing URLs, and managing RSVPs.",
+    longDescription: "A mobile-first SaaS platform for creating, customizing, sharing, and managing digital wedding invitations. Couples can design personalized invitations, share secure invitation links, collect RSVP responses, manage guest lists, track attendance, and export guest data, while guests receive a polished mobile experience for viewing event details and responding online.", category: "SaaS Product",
     technologies: ["Next.js", "TypeScript", "Google Auth", "Tailwind CSS", "PostgreSQL"],
     role: "Full-Stack Developer",
-    challenge: "Creating a seamless user experience for both couples (inviters) and guests, while ensuring mobile responsiveness and secure authentication.",
-    solution: "Implemented Google OAuth for quick sign-up, responsive design for all devices, and real-time RSVP tracking with database synchronization.",
+    challenge: "Designing a polished experience for two different user groups: couples who need invitation management tools, and guests who need a simple, mobile-friendly RSVP flow.",
+    solution: "Built a full-stack Next.js application with Google OAuth, PostgreSQL-backed invitation and guest data, customizable invitation themes, shareable invitation URLs, RSVP forms, guest management tools, and CSV export.",
     results: [
-      "Streamlined invitation creation process with customizable templates",
-      "Real-time guest response tracking with analytics",
-      "Mobile-optimized experience for guests to respond on any device"
+      "Created a complete digital invitation workflow from invite creation to guest RSVP tracking",
+      "Built a mobile-first guest experience with ceremony/reception maps and RSVP submission",
+      "Implemented guest management features including status tracking, party size updates, filtering, manual guest creation, and CSV export"
     ],
     url: "https://myinvites.gr",
     status: "Live",
@@ -672,56 +667,57 @@ export const projects: IProject[] = [
     slides: [
       {
         id: "myinvites1",
-        title: "Google Authentication Flow",
-        description: "Secure login using Google OAuth, enabling quick sign-up and sign-in for users.",
+        title: "Landing & Google Authentication",
+        description: "Elegant landing screen with Google OAuth sign-in, introducing the digital invitation workflow.",
         frame: "phone",
       },
       {
         id: "myinvites2",
-        title: "Dashboard Overview",
-        description: "Centralized invitation management dashboard with analytics and quick actions.",
+        title: "Invitation Dashboard",
+        description: "Mobile dashboard where users can view upcoming and past invitations, copy invitation URLs, and quickly create a new invitation.",
         frame: "phone",
       },
       {
         id: "myinvites3a",
-        title: "Template Selection",
-        description: "Browse and select from customizable wedding invitation templates.",
+        title: "Invitation Details & Theme Selection",
+        description: "Create flow for entering couple details, wedding phrase, and selecting a visual theme for the invitation.",
         frame: "phone",
       },
       {
         id: "myinvites3b",
-        title: "Customization Panel",
-        description: "Personalize invitation details including text, colors, and layout options.",
+        title: "Event Date & Location Setup",
+        description: "Form sections for configuring the wedding date, ceremony location, reception venue, map URL, and itinerary.",
         frame: "phone",
       },
       {
         id: "myinvites3c",
-        title: "Preview & Export",
-        description: "Real-time preview of the invitation with export options for print or digital sharing.",
+        title: "RSVP, Gift & Final Creation Options",
+        description: "Final creation step with event schedule, bank gift information, dietary restriction options, and invitation submission.",
         frame: "phone",
       },
       {
         id: "myinvites4a",
-        title: "RSVP Tracking Dashboard",
-        description: "Monitor guest responses with real-time updates and status indicators.",
+        title: "Guest Invitation Cover",
+        description: "Mobile-first invitation landing page with couple names, wedding phrase, date card, and a clear call-to-action to open the invitation.",
         frame: "phone",
       },
       {
         id: "myinvites4b",
-        title: "Guest Management Table",
-        description: "Organize and filter guest lists with personalized notes and contact details.",
+        title: "Ceremony & Reception Details",
+        description: "Guest-facing event details page with embedded maps and quick open-map actions for ceremony and reception locations.",
         frame: "phone",
       },
       {
         id: "myinvites4c",
-        title: "Post-Event Thank You Page",
-        description: "Customizable thank you page for guests with links to share photos and feedback.",
+        title: "Guest RSVP Form",
+        description: "Smooth RSVP experience where guests can accept or decline, enter party size, phone number, and submit their response.",
         frame: "phone",
       },
       {
         id: "myinvites5",
-        title: "Mobile-Responsive Design",
-        description: "Seamless mobile experience for managing invitations on-the-go with optimized touch controls.",
+        title: "Guest Management Dashboard",
+        description: "Desktop management view for tracking guests, filtering responses, adjusting party sizes, exporting CSV data, and adding guests manually.",
+        frame: "desktop",
       }
     ]
   },
