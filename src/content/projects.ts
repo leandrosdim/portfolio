@@ -331,7 +331,7 @@ export const projects: IProject[] = [
           "Manual booking and session status management for real-world operational flexibility.",
         frame: "desktop",
       },
-       {
+      {
         id: "anastasia13",
         title: "In-App Camera & Session Capture",
         description: "Built-in camera integration for capturing session photos and training moments",
@@ -555,17 +555,36 @@ export const projects: IProject[] = [
       "Complete timeline view per customer",
       "Activity overview across all relationships",
     ],
-    status: "Building",
-    type: "Building",
+    status: "Live",
+    type: "Web",
     featured: false,
-    projectOrder: 7,
+    projectOrder: 8,
     slides: [
       {
-        id: "under_construction",
-        title: "Under Construction (Coming Soon)",
-        description:
-          "This feature is currently in development, and a polished version will be available in a future update.",
+        id: "crm1",
+        title: "Unified Customer Timeline",
+        description: "Centralized timeline view showing all customer interactions across channels with activity grouping and filtering options."
       },
+      {
+        id: "crm2",
+        title: "Multi-Channel Action Panel",
+        description: "Integrated communication interface for sending SMS, email, and call actions directly from customer profiles with audit trails."
+      },
+      {
+        id: "crm3",
+        title: "Analytics Dashboard",
+        description: "Overview of relationship metrics including engagement rates, conversion statistics, and activity heatmaps across customer segments."
+      },
+      {
+        id: "crm4",
+        title: "Customer Card & History",
+        description: "Comprehensive customer profile displaying complete interaction history, notes, and relationship status with role-based access controls."
+      },
+      {
+        id: "crm5",
+        title: "Activity Overview",
+        description: "Consolidated view of all relationship activities with search, filtering, and export capabilities for operational visibility."
+      }
     ],
   },
   {
@@ -590,7 +609,7 @@ export const projects: IProject[] = [
     status: "Building",
     type: "Building",
     featured: false,
-    projectOrder: 8,
+    projectOrder: 9,
     slides: [
       {
         id: "under_construction",
@@ -619,7 +638,7 @@ export const projects: IProject[] = [
     status: "Live",
     type: "Web",
     featured: true,
-    projectOrder: 9,
+    projectOrder: 7,
     slides: [
       {
         id: "myinvites1",
