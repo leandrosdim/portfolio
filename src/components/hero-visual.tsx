@@ -166,7 +166,7 @@ export default function HeroVisual() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-lg mx-auto"
+      className="relative w-full max-w-lg mx-auto overflow-hidden"
       aria-hidden="true"
     >
       <div className="absolute inset-0 bg-brand-accent/5 rounded-3xl blur-3xl" />
