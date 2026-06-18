@@ -139,7 +139,10 @@ export default function HeroVisual() {
       }, linePause);
       return () => clearTimeout(timer);
     } else {
-      setDone(true);
+      const timer = setTimeout(() => {
+        setDone(true);
+      }, linePause);
+      return () => clearTimeout(timer);
     }
   }, [lineIndex, charIndex, done, totalLines]);
 
@@ -189,7 +192,6 @@ export default function HeroVisual() {
 
         <div className="p-5 space-y-4">
           {CODE_LINES.map((line, i) => {
-            const lineText = getLineText(line);
             const indentPx = line.indent * 16;
 
             if (i < lineIndex) {

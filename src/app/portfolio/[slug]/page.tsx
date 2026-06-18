@@ -174,7 +174,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                         className="flex justify-center"
                       >
                         <PhoneFrame
-                          src={`/${project.id}/${slide.id}.jpg`}
+                          src={`/${project.id}/${slide.id}.${slide.extension ?? "jpg"}`}
                           alt={slide.title}
                           title={slide.title}
                           description={slide.description}
@@ -185,7 +185,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                         <div className="relative aspect-video rounded-glass overflow-hidden border border-brand-border bg-brand-secondary">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
-                            src={`/${project.id}/${slide.id}.jpg`}
+                            src={`/${project.id}/${slide.id}.${slide.extension ?? "jpg"}`}
                             alt={slide.title}
                             className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                           />

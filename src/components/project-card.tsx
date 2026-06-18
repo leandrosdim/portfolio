@@ -17,8 +17,16 @@ function isFirstSlidePhone(project: IProject): boolean {
   return project.slides?.[0]?.frame === "phone";
 }
 
+function getFirstSlideImageSrc(project: IProject): string {
+  const slide = project.slides?.[0];
+  if (!slide) return "";
+
+  return `/${project.id}/${slide.id}.${slide.extension ?? "jpg"}`;
+}
+
 export default function ProjectCard({ project, featured = false }: IProjectCardProps) {
   const isPhone = isFirstSlidePhone(project);
+  const firstSlideImageSrc = getFirstSlideImageSrc(project);
 
   return (
     <Link
@@ -39,7 +47,7 @@ export default function ProjectCard({ project, featured = false }: IProjectCardP
                 <div className="relative aspect-[9/19.5] h-full overflow-hidden rounded-[16px]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={`/${project.id}/${project.slides[0].id}.jpg`}
+                    src={firstSlideImageSrc}
                     alt={project.title}
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
@@ -52,7 +60,7 @@ export default function ProjectCard({ project, featured = false }: IProjectCardP
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={`/${project.id}/${project.slides[0].id}.jpg`}
+              src={firstSlideImageSrc}
               alt={project.title}
               className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
             />

@@ -20,6 +20,7 @@ export interface IProject {
     title: string;
     description: string;
     frame?: "phone" | "desktop";
+    extension?: "jpg" | "png";
   }[];
 }
 
@@ -615,6 +616,56 @@ export const projects: IProject[] = [
     ]
   },
   {
+    id: "delivery-export",
+    title: "Delivery Export",
+    description:
+      "One-page delivery entry app that replaces manual Excel editing with validated forms and ERP-compatible CSV export.",
+    category: "Business Utility",
+    longDescription:
+      "A lightweight web application built for a delivery services workflow where third-party partners previously completed an Excel import file manually. The app turns that process into a clean Greek-language form, supports multiple delivery entries, validates important fields, and exports an ERP-compatible CSV file while preserving the required column order and headers.",
+    technologies: [
+      "Next.js",
+      "JavaScript",
+      "CSV Export",
+      "Excel Workflow",
+      "Tailwind CSS"
+    ],
+    role: "Full-Stack Developer",
+    challenge:
+      "Replacing a fragile manual Excel process with a simple tool that non-technical delivery partners can use without changing the customer's ERP import workflow.",
+    solution:
+      "Built a schema-driven one-page form with reusable inputs, Excel-derived dropdown options, Greek validation messages, accordion-based multiple delivery entries, and CSV generation compatible with the existing import process.",
+    results: [
+      "Reduced manual Excel editing for delivery partners",
+      "Added validation before export to prevent incomplete or malformed delivery data",
+      "Generated ERP-compatible CSV files with preserved Greek headers and column order",
+      "Improved usability with accordion delivery cards and mobile-friendly layout"
+    ],
+    url: "https://delivery-export-self.vercel.app/",
+    status: "Live",
+    type: "Web",
+    featured: false,
+    projectOrder: 9,
+    slides: [
+      {
+        id: "deliveryexport1",
+        title: "Delivery Entry Form",
+        description:
+          "Clean Greek-language form for entering delivery details, including date, document number, AFM fields, route information, and controlled dropdown options.",
+        frame: "desktop",
+        extension: "png"
+      },
+      {
+        id: "deliveryexport2",
+        title: "Validation, Summary & CSV Export",
+        description:
+          "Lower form sections and action area for completing delivery details, reviewing totals, adding entries, clearing data, and exporting an ERP-compatible CSV file.",
+        frame: "desktop",
+        extension: "png"
+      }
+    ]
+  },
+  {
     id: "law-agent",
     title: "Law Agent",
     description:
@@ -636,7 +687,7 @@ export const projects: IProject[] = [
     status: "Building",
     type: "Building",
     featured: false,
-    projectOrder: 9,
+    projectOrder: 10,
     slides: [
       {
         id: "under_construction",
