@@ -45,9 +45,8 @@ export default function ProjectCard({ project, featured = false }: IProjectCardP
                   <div className="h-[3px] w-[36px] rounded-full bg-brand-border" />
                 </div>
                 <div className="relative aspect-[9/19.5] h-full overflow-hidden rounded-[16px]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={firstSlideImageSrc}
+                <img
+                  src={firstSlideImageSrc}
                     alt={project.title}
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
@@ -58,7 +57,6 @@ export default function ProjectCard({ project, featured = false }: IProjectCardP
               </div>
             </div>
           ) : (
-            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={firstSlideImageSrc}
               alt={project.title}

@@ -183,7 +183,6 @@ export default async function ProjectDetailPage({ params }: Props) {
                     ) : (
                       <div key={slide.id} className="group">
                         <div className="relative aspect-video rounded-glass overflow-hidden border border-brand-border bg-brand-secondary">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={`/${project.id}/${slide.id}.${slide.extension ?? "jpg"}`}
                             alt={slide.title}

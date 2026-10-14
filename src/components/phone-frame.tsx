@@ -20,7 +20,6 @@ export default function PhoneFrame({
               <div className="h-[5px] w-[60px] rounded-full bg-brand-border" />
             </div>
             <div className="relative aspect-[9/19.5] overflow-hidden rounded-[20px]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={src}
                 alt={alt}
