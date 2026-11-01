@@ -28,6 +28,7 @@
     "validator": "^13.15.26"
   },
   "overrides": {
+    "minimatch": "^11.0.3",
     "postcss": "^8.5.10"
   },
   "devDependencies": {
